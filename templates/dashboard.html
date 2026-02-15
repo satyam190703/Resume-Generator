@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        a {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 15px;
+            font-size: 18px;
+            background-color: #1f1fff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        a:hover {
+            background-color: #3737ff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ user.name }}!</h1>
+    <a href="/edit_profile">Edit Profile</a>
+    <a href="/resume_preview">Generate Resume</a>
+    <a href="/logout">Logout</a>
+</body>
+</html>

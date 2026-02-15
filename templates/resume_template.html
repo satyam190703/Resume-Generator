@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ name }} - Resume</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px auto;
+      padding: 0 40px;
+      line-height: 1.6;
+      font-size: 13.5px;
+      color: #000;
+      max-width: 800px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      font-size: 16px;
+      border-bottom: 1px solid #666;
+      padding-bottom: 2px;
+      margin-top: 24px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact {
+      font-size: 13px;
+      margin-bottom: 18px;
+      color: #333;
+    }
+
+    .contact a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+
+    .section {
+      margin-bottom: 14px;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #555;
+    }
+
+    .project-block {
+      margin-bottom: 10px;
+    }
+
+    .project-title {
+      font-weight: bold;
+    }
+
+    .header-line {
+      border-bottom: 2px solid #000;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>{{ name }}</h1>
+  <div class="contact">
+    {{ location }} |
+    <a href="mailto:{{ email }}">{{ email }}</a> |
+    Phone: {{ phone }}<br>
+    {% if linkedin %}<a href="{{ linkedin }}" target="_blank">LinkedIn</a>{% endif %}
+    {% if linkedin and github %} | {% endif %}
+    {% if github %}<a href="{{ github }}" target="_blank">GitHub</a>{% endif %}
+  </div>
+  <div class="header-line"></div>
+
+  {% if summary %}
+  <div class="section">
+    <h2>Professional Summary</h2>
+    <p>{{ summary }}</p>
+  </div>
+  {% endif %}
+
+  {% if skills %}
+  <div class="section">
+    <h2>Skills</h2>
+    <ul>
+      {% for skill in skills %}
+        <li>{{ skill }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if projects %}
+  <div class="section">
+    <h2>Projects</h2>
+    {% for project in projects %}
+    <div class="project-block">
+      <div class="project-title">{{ project.title }}</div>
+      <div class="small">{{ project.desc }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if education %}
+  <div class="section">
+    <h2>Education</h2>
+    {% for edu in education %}
+      <p><strong>{{ edu.degree }}</strong>, {{ edu.institution }} ({{ edu.year }})<br>
+      <span class="small">Score: {{ edu.score }}</span></p>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if internships %}
+  <div class="section">
+    <h2>Internships</h2>
+    {% for intern in internships %}
+    <p><strong>{{ intern.title }}</strong> at {{ intern.company }} ({{ intern.field }})<br>
+    <span class="small">{{ intern.desc }}</span><br>
+    <span class="small"><strong>Key Skills:</strong> {{ intern.skills }}</span></p>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if achievements %}
+  <div class="section">
+    <h2>Achievements</h2>
+    <ul>
+      {% for ach in achievements %}
+        {% if ach.strip() %}
+        <li>{{ ach }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if extra_activities %}
+  <div class="section">
+    <h2>Extra Curricular Activities</h2>
+    <ul>
+      {% for act in extra_activities %}
+        {% if act.strip() %}
+        <li>{{ act }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if responsibilities %}
+  <div class="section">
+    <h2>Positions of Responsibility</h2>
+    <ul>
+      {% for res in responsibilities %}
+        {% if res.strip() %}
+        <li>{{ res }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+</body>
+</html>

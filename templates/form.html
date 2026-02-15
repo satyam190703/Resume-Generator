@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Resume Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h3 { color: #333; }
+        input, textarea {
+            width: 100%; padding: 10px; margin-top: 6px; margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        textarea { resize: vertical; }
+        button, .add-btn {
+            padding: 10px 16px; background: #333; color: white;
+            border: none; cursor: pointer; border-radius: 4px; margin-top: 10px;
+        }
+        button:hover, .add-btn:hover { background: #555; }
+        .readonly { background: #eee; }
+        .add-btn { font-size: 14px; background: #007bff; }
+        .group {
+            padding: 10px; background: #f0f0f0;
+            margin-bottom: 10px; border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Edit Your Resume Details</h1>
+
+<form method="POST" action="/edit_profile">
+
+    <h3>Personal Info</h3>
+    <label>Name:</label>
+    <input name="name" value="{{ user.name }}" class="readonly" readonly>
+
+    <label>Email:</label>
+    <input name="email" value="{{ user.email }}" class="readonly" readonly>
+
+    <label>Phone:</label>
+    <input name="phone" value="{{ user.phone }}">
+
+    <label>Location:</label>
+    <input name="location" value="{{ user.location }}">
+
+    <label>LinkedIn:</label>
+    <input name="linkedin" value="{{ user.linkedin }}">
+
+    <label>GitHub:</label>
+    <input name="github" value="{{ user.github }}">
+
+    <h3>Education</h3>
+    <div id="education-list">
+        {% for edu in user.education %}
+        <div class="group">
+            <label>Degree:</label><input name="degree[]" value="{{ edu.degree }}">
+            <label>Institution:</label><input name="institution[]" value="{{ edu.institution }}">
+            <label>Year:</label><input name="year[]" value="{{ edu.year }}">
+            <label>Score:</label><input name="score[]" value="{{ edu.score }}">
+        </div>
+        {% endfor %}
+    </div>
+    <button type="button" class="add-btn" onclick="addEducation()">+ Add Education</button>
+
+    <h3>Internships</h3>
+    <div id="internship-list">
+        {% for intern in user.internships %}
+        <div class="group">
+            <label>Company:</label><input name="company[]" value="{{ intern.company }}">
+            <label>Field:</label><input name="field[]" value="{{ intern.field }}">
+            <label>Title:</label><input name="intern_title[]" value="{{ intern.title }}">
+            <label>Skills:</label><input name="intern_skills[]" value="{{ intern.skills }}">
+            <label>Description:</label><textarea name="intern_desc[]">{{ intern.desc }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+    <button type="button" class="add-btn" onclick="addInternship()">+ Add Internship</button>
+
+    <h3>Achievements</h3>
+    <div id="achievements-list">
+        {% for item in user.achievements %}
+        <input type="text" name="achievements[]" value="{{ item }}">
+        {% endfor %}
+    </div>
+    <button type="button" class="add-btn" onclick="addField('achievements-list', 'achievements[]')">+ Add Achievement</button>
+
+    <h3>Activities</h3>
+    <div id="activities-list">
+        {% for item in user.extra_activities %}
+        <input type="text" name="activities[]" value="{{ item }}">
+        {% endfor %}
+    </div>
+    <button type="button" class="add-btn" onclick="addField('activities-list', 'activities[]')">+ Add Activity</button>
+
+    <h3>Responsibilities</h3>
+    <div id="responsibilities-list">
+        {% for item in user.responsibilities %}
+        <input type="text" name="responsibilities[]" value="{{ item }}">
+        {% endfor %}
+    </div>
+    <button type="button" class="add-btn" onclick="addField('responsibilities-list', 'responsibilities[]')">+ Add Responsibility</button>
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<script>
+    function addField(containerId, name) {
+        const container = document.getElementById(containerId);
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = name;
+        input.placeholder = 'Enter more...';
+        container.appendChild(input);
+    }
+
+    function addEducation() {
+        const div = document.createElement('div');
+        div.classList.add('group');
+        div.innerHTML = `
+            <label>Degree:</label><input name="degree[]">
+            <label>Institution:</label><input name="institution[]">
+            <label>Year:</label><input name="year[]">
+            <label>Score:</label><input name="score[]">
+        `;
+        document.getElementById("education-list").appendChild(div);
+    }
+
+    function addInternship() {
+        const div = document.createElement('div');
+        div.classList.add('group');
+        div.innerHTML = `
+            <label>Company:</label><input name="company[]">
+            <label>Field:</label><input name="field[]">
+            <label>Title:</label><input name="intern_title[]">
+            <label>Skills:</label><input name="intern_skills[]">
+            <label>Description:</label><textarea name="intern_desc[]"></textarea>
+        `;
+        document.getElementById("internship-list").appendChild(div);
+    }
+</script>
+
+</body>
+</html>

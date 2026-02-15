@@ -1,0 +1,6 @@
+flask
+firebase-admin
+pdfkit
+jinja2
+python-dotenv
+requests

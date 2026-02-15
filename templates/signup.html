@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup - Resume Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1, h3 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Signup</h1>
+    <form action="/signup" method="POST">
+        <label>Name</label>
+        <input name="name" required>
+
+        <label>Email</label>
+        <input name="email" type="email" required>
+
+        <label>Password</label>
+        <input name="password" type="password" required>
+
+        <label>Phone</label>
+        <input name="phone" required>
+
+        <label>Location</label>
+        <input name="location">
+
+        <label>LinkedIn</label>
+        <input name="linkedin">
+
+        <label>GitHub</label>
+        <input name="github">
+
+        <h3>Education</h3>
+        <label>Degree</label>
+        <input name="degree">
+
+        <label>Institution</label>
+        <input name="institution">
+
+        <label>Year</label>
+        <input name="year">
+
+        <label>Score</label>
+        <input name="score">
+
+        <h3>Internship</h3>
+        <label>Company</label>
+        <input name="company">
+
+        <label>Field</label>
+        <input name="field">
+
+        <label>Intern Title</label>
+        <input name="intern_title">
+
+        <label>Intern Skills</label>
+        <input name="intern_skills">
+
+        <label>Intern Description</label>
+        <textarea name="intern_desc"></textarea>
+
+        <h3>Achievements <span style="font-weight: normal">(one per line)</span></h3>
+        <textarea name="achievements"></textarea>
+
+        <h3>Extra Curricular Activities <span style="font-weight: normal">(one per line)</span></h3>
+        <textarea name="activities"></textarea>
+
+        <h3>Responsibilities <span style="font-weight: normal">(one per line)</span></h3>
+        <textarea name="responsibilities"></textarea>
+
+        <button type="submit">Signup</button>
+    </form>
+
+</body>
+</html>

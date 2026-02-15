@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Preview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #222;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #1f1fff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3737ff;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Preview & Edit Resume Content</h2>
+
+    <form method="POST">
+        <label><strong>Summary (3 lines max):</strong></label><br>
+        <textarea name="summary" placeholder="Summary..."></textarea><br>
+
+        <label><strong>Skills (one per line):</strong></label><br>
+        <textarea name="skills" placeholder="Python\nJava\nSQL..."></textarea><br>
+
+        <label><strong>Projects (Title: Description per line):</strong></label><br>
+        <textarea name="projects" placeholder="SmartCart: Built an AI-based checkout system\n..."></textarea><br>
+
+        <button type="submit">Next: Add Job Description</button>
+    </form>
+
+</body>
+</html>
